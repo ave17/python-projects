@@ -26,7 +26,7 @@ def see_books():
         print("There are no books in this library, insert 0 for going back or 1 for exiting the application.")
         choice = input("Enter your selection: ")
         if choice == "0":
-            return  # back to menu
+            return  # back to menu /Aici am o intrebare.
         elif choice == "1":
             exit()
 
@@ -38,7 +38,41 @@ def see_books():
         return
 
 
+def add_book():
+
+    clear_screen()
+    print("Add a new book")
+    title = input("Insert book title: ").strip()
+    while title == "":
+        title = input(
+            "Title cannot be empty. Please insert a book title: ").strip()
+
+    author = input("Insert book author: ").strip()
+    while author == "":
+        author = input(
+            "Author cannot be empty. Please insert book author: ").strip()
+
+    new_book = {"title": title, "author": author}
+    books.append(new_book)
+    print("Book added successfully!")
+    input("Press Enter to return to the main menu...")
+    return
+
+
 see_books()
 
-# while True:
-#     show_menu()
+while True:
+    show_menu()
+    choice = input("Enter your selection: ")
+    if choice == "1":
+        see_books()
+    elif choice == "2":
+        add_book()
+    elif choice == "3":
+        # delete book()
+        pass
+    elif choice == "4":
+        print("Goodbye!")
+        break
+    else:
+        print("Invalid selection, please try again.")
