@@ -26,7 +26,7 @@ def see_books():
         print("There are no books in this library, insert 0 for going back or 1 for exiting the application.")
         choice = input("Enter your selection: ")
         if choice == "0":
-            return  # back to menu /Aici am o intrebare.
+            return  # back to menu
         elif choice == "1":
             exit()
 
@@ -59,7 +59,29 @@ def add_book():
     return
 
 
-see_books()
+def delete_book(): 
+    clear_screen()
+    print("Delete a book: \n")
+    for i, book in enumerate(books, start=1):
+        print(f"{i}. {book['title']} - {book['author']}")
+    print("0. Back")
+
+    choice = input("Please specify which book should be deleted: ")
+    if choice == '0':
+        return #back to menu
+    else:
+        try:
+            index = int(choice) - 1 #convert choice to list index.
+            if 0 <= index < len(books):
+                deleted_book = books.pop(index)
+                print(f"Deleted: {deleted_book['title']} - {deleted_book['author']}")
+            else:
+                print("Invalid book number.")
+        except ValueError:
+            print("Please enter a valid number.")
+        input("Press Enter to return to the main menu.")
+        return
+    
 
 while True:
     show_menu()
@@ -69,8 +91,7 @@ while True:
     elif choice == "2":
         add_book()
     elif choice == "3":
-        # delete book()
-        pass
+        delete_book()
     elif choice == "4":
         print("Goodbye!")
         break
